@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" href="F:/Python src/meme-master/flask/app/static/css/index.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <title>{{page_title}}</title>
+  </head>
+  <body>
+      <div class="container-fluid main_logo">
+        
+          <div class = "row">
+            <div class = "col text-right p-3 mb-5">
+              <img class="image-fluid mr-3" src="#"/><a href = "#" class="btn btn-dark">登录</a>
+            </div>
+          </div>
+          <div class="row align-items-center">
+              <div class="col text-center"><h1>斗图大师</h1></div>
+          </div>
+          <div class="row align-items-end">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-center">
+              <form action="index" method="POST">
+                  <div class="form-row">
+                    <div class="col">
+                      <input class="form-control" type="text" name="search_content" placeholder="请输入你要搜索的表情">
+                    </div>
+                    <div class="col-auto">
+                        <input class="btn btn-dark" type="submit" value="给我搜">
+                    </div>
+                  </div>
+              </form>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+      </div>
+      <!--导航栏-->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">表情分类</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#" >分类1 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">分类2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">分类3</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="#">分类4</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="#">分类5</a>
+              </li>
+            </ul>
+          </div>
+      </nav>
+      <div class="shadow p-3 mb-5  main_board container-fluid">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">主页</a></li>
+            <li class="breadcrumb-item active" aria-current="page">搜索结果</li>
+          </ol>
+        </nav>
+        <!--
+
+          
+        -->
+      <h4 class="text-center mt-5" id="bottom_tip">没有图片了φ(．．｡)</h4>   
+      </div>
+
+
+      
+    
+    <a href="#" class="position-fixed btn btn-dark" id="back_to_top">回到顶部</a>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="F:/Python src/meme-master/flask/app/static/js/emoji_group.js"></script>
+    <script src="{{ url_for('static',filename='js/emoji_group.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/clipboard.min.js') }}"></script>
+    <script src="F:/Python src/meme-master/flask/app/static/js/clipboard.min.js"></script>
+    <script src="{{ url_for('static',filename='js/index.js') }}"></script>
+    <script src="F:/Python src/meme-master/flask/app/static/js/index.js"></script>
+  </body>
+</html>

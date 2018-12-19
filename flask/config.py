@@ -1,0 +1,3 @@
+class Config(object):
+    SECRET_KEY = 'F02EC506271A5E14A659833C55F5FC92'#密码
+    

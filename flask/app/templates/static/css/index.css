@@ -1,0 +1,19 @@
+.main_logo{
+    background-color:dodgerblue;
+    height: 25rem;
+}
+.main_logo h1{
+    font-size: 3rem;
+    color: white;
+}
+.row{
+    height:8rem;
+}
+/* row的align-items-end是针对里面的col而言的，所以要给row指定一个高度*/
+.main_board{
+    height: 100rem;
+    
+}
+.card:hover{
+    box-shadow: 2px 5px 4px #888888;
+}

@@ -1,0 +1,37 @@
+.main_logo{
+    background-color:dodgerblue;
+    height: 25rem;
+}
+.main_logo h1{
+    font-size: 3rem;
+    color: white;
+}
+.main_logo .row{
+    height:8rem;
+}
+/* row的align-items-end是针对里面的col而言的，所以要给row指定一个高度*/
+.main_board{
+    
+    
+}
+.card:hover{
+    box-shadow: 2px 5px 4px #888888;
+}
+.main_board .row{
+    margin-top: 1rem;
+}
+.main_board img{
+    height: 15rem;
+}
+
+#back_to_top{
+    right: 3rem;
+    bottom: 3rem;
+    border-radius: 2rem;
+}
+.bg-main{
+    background-color: #ff8040;
+}
+#bottom_tip{
+    color:#c0c0c0;
+}
