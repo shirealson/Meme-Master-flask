@@ -3,7 +3,7 @@ from app import app
 from app import Cdatabase
 from flask import request
 from flask import Flask, jsonify
-
+import random
 @app.route('/')
 @app.route('/index',methods = ['POST','GET'])
 def index():
@@ -16,7 +16,8 @@ def index():
 
 
 
-
+'''
+旧代码
 @app.route('/getgroup/<int:category>/<int:num>')
 def getgroup(category,num):
     data={}
@@ -25,6 +26,30 @@ def getgroup(category,num):
     data['num']=num
     data['paths']=paths
     return jsonify(data)
+'''
+@app.route('/getgroup/<int:category>')
+def getgroup(category):
+    data={}
+    paths,num,name=Cdatabase.CategoryQuery(category)
+    data['category']=category
+    data['num']=num
+    data['paths']=paths
+    data['category_cn_name']=name
+    return jsonify(data)
+@app.route('/getrandom')
+def getrandom():
+    datas={}
+    max=Cdatabase.getMAXTemplateID()
+    min=Cdatabase.getMINTemplateID()
+    for   i  in range(1,11):
+        data={}
+        category=random.randint(min, max)
+        num,name=Cdatabase.CategoryQuerycn(category)
+        data['category']=category
+        data['num']=num
+        data['category_cn_name']=name
+        datas[str(i)]=data
+    return jsonify(datas)
 
 if __name__ == '__main__':
     app.debug = True

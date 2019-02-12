@@ -3,23 +3,20 @@ var col_width = 12 / col_number;
 var col_class = "col-md-"+col_width;
 var rest_col = 0;//当元素数不能刚好凑够一行时，该变量表示剩下的空列数
 var nav_top = 0;
-var cates = new Array();
-cates[0] = create_emojiGroup(1);
-cates[1] = create_emojiGroup(2);
-cates[2] = create_emojiGroup(3);
-cates[3] = create_emojiGroup(4);
-cates[4] = create_emojiGroup(5);
-var current_cate = cates[0];
+var cates = new Array();//保存着当前页面的分类
+var cate_list = new Array();//从服务器获取的分类信息，用以初始化nav-link
+
+var current_cate;//记录当前分类
 var imageSet = "empty";
 var loading_lock = 0;//加载锁，当正在进行http请求时会将滚动事件锁定
 //onload装载事件
 window.onload=function(){
-    var data = {'data': [
-{'src' : "./static/img/0a3dcb8f9f349f11b8046c97afb698e373abcb20.jpg"},
-{'src' : "./static/img/0a5b4361ae7cf63d3907b6119ae2410d5e402dee.jpg"},
-{'src' : "./static/img/0a9b1c8c06489c50cc45a261abee14e9206cb0bc.jpg"},
-{'src' : "./static/img/0a9ff81ab2a907b2a4e011e9e7b65c7345b5d990.jpg"}]};
-    
+    rest_col = 0;//初始化rest_col
+    card_num = 0;
+    loading_lock = 1;
+    nav_top = $(".navbar").offset().top;//初始化导航栏的顶
+    initialize(function(){//此处开始为回调函数
+    //绑定事件
     window.onscroll=function(){
         if(checkBottom() && loading_lock == 1){
             loading_lock = 0;//锁定事件
@@ -45,6 +42,7 @@ window.onload=function(){
 
     nav_links = $(".nav-link");
     nav_links.each(function(index,element){
+        console.log("绑定点击事件" + index)
         $(this).click(function(){
             current_cate = cates[index];
             clear_screen();//清除原有的元素
@@ -63,21 +61,14 @@ window.onload=function(){
             
 
         })
-    })
+    });
 
-    rest_col = 0;//初始化rest_col
-    card_num = 0;
-    loading_lock = 1;
-    nav_top = $(".navbar").offset().top;//初始化导航栏的顶
-    initialize();//初始化
-    var clipboard = new ClipboardJS('.copy_img_link');
-    clipboard.on('success', function(e) {
+    });//初始化
+
     
-    });
-    clipboard.on('error', function(e) {
     
-    });
 }
+
 function updatePage(imageSet){
     main_board = document.getElementsByClassName('main_board')[0];
     bottom_tip = $("#bottom_tip");
@@ -172,19 +163,32 @@ function insertCard(parent,img_src,title){//parent：父元素对象 img_src : �
     current_cate.group_loaded_index  += 1;//更新当前对象的已加载数量
 }
 
-function initialize(){
-    current_cate.change_group();
-    rest_col = 0;//重置了需要将该值清零
-    loading_lock = 0;
-    console.log("当前loaded_group" + current_cate.group_loaded_group);
-    GET_Request("getgroup/" + current_cate.group_id + "/" + current_cate.eachUpdateNum * (current_cate.group_loaded_group + 1),
+function initialize(callback){
+    //获取nav-link分组信息创建,cates数组
+    GET_Request("getrandom",function(dataJSON){
+        cate_list = dataJSON
+        for(var index = 0;index < JSONLength(cate_list);index++){
+            cates[index] = create_emojiGroup(cate_list[index + 1]);//因为cate_list从1开始数起
+        }
+        //初始化navlink
+        nav_link_init(cates);
+        current_cate = cates[0];
+        current_cate.change_group();
+        rest_col = 0;//重置了需要将该值清零
+        loading_lock = 0;
+        console.log("当前loaded_group" + current_cate.group_loaded_group);
+        GET_Request("getgroup/" + current_cate.group_id + "/" + current_cate.eachUpdateNum * (current_cate.group_loaded_group + 1),
         function(dataJSON){//回调函数
-        imageSet = dataJSON.paths;
-        updatePage(imageSet);
-        current_cate.query_success();//成功了就增长
-        loading_lock = 1;
-        console.log("加载完以后loaded_group" + current_cate.group_loaded_group);       
+            imageSet = dataJSON.paths;
+            updatePage(imageSet);
+            current_cate.query_success();//成功了就增长
+            loading_lock = 1;
+            console.log("加载完以后loaded_group" + current_cate.group_loaded_group);       
         });
+        callback();//执行回调函数
+    })
+    
+    
 }
 
 function copy_img(ele){
@@ -229,7 +233,34 @@ function GET_Request(target,call_back){//1.目标 2.回调函数
     };
 }
 
+function JSONLength(obj) {  
+  
+    var size = 0, key;  
+      
+    for (key in obj) {  
+      
+        if (obj.hasOwnProperty(key)) size++;  
+      
+    }  
+      
+    return size;  
+      
+};  
+
 function clear_screen(){
     rows = $(".main_board .row");
     rows.remove();
+}
+
+function nav_link_init(cates){
+    parent_nav = $(".navbar-nav")[0];
+    for(var i = 0;i<cates.length;i++){
+        new_nav_link = $("<li class='nav-item'></li>");
+        new_a = $("<a class='nav-link'></a>");
+        new_a.html(cates[i].group_cn_name);
+        new_a.appendTo(new_nav_link);
+        new_nav_link.appendTo(parent_nav);
+        console.log("创建nav标签")
+    }
+ 
 }
