@@ -15,14 +15,11 @@ def  CategoryQuery(category,num):
     conn.close()
     return paths
 '''
-def CategoryQuery(category):
+def CategoryQuery(category,num):
     conn = mysql.connector.connect(user='root', password='', database='sougou', use_unicode=True)
     cursor=conn.cursor()
-    cursor.execute('SELECT  image_name FROM  emoji   WHERE   template_id=%d;'%(category))
+    cursor.execute('SELECT  image_name FROM  emoji   WHERE   template_id=%d LIMIT %d,%d;'%(category,num-eachItemNum,num))
     paths = cursor.fetchall()
-    PATHS=[]
-    for path  in paths:
-    	PATHS.append(path[0])
     #print  PATHS
     cursor.execute('SELECT  count(image_name) FROM  emoji   WHERE   template_id=%d;'%(category))
     num=cursor.fetchall()[0][0]
@@ -32,7 +29,7 @@ def CategoryQuery(category):
     #print name
     cursor.close()
     conn.close()
-    return (PATHS,num,name)
+    return (paths,num,name)
 def CategoryQuerycn(category):
     conn = mysql.connector.connect(user='root', password='', database='sougou', use_unicode=True)
     cursor=conn.cursor()

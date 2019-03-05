@@ -4,4 +4,4 @@ cd ..
 cd ..
 cd .\flask\
 set FLASK_APP=meme_master.py
-flask run
+flask run --host=0.0.0.0

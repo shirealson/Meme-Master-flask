@@ -1,0 +1,28 @@
+2824 ’≈—µ¡∑ºØÕº∆¨£¨ 352 ’≈≤‚ ‘ºØÕº∆¨
+19-02-15 17:43:20: epoch 0, train_accuracy = 0.742626, train_loss = 0.559727.
+19-02-15 17:43:23:          val_accuracy = 0.633523, val_loss = 0.096029
+19-02-15 17:44:07: epoch 1, train_accuracy = 0.709972, train_loss = 0.589679.
+19-02-15 17:44:10:          val_accuracy = 0.633523, val_loss = 0.090795
+19-02-15 17:44:54: epoch 2, train_accuracy = 0.706110, train_loss = 0.578951.
+19-02-15 17:44:57:          val_accuracy = 0.633523, val_loss = 0.091632
+19-02-15 17:45:40: epoch 3, train_accuracy = 0.702247, train_loss = 0.587455.
+19-02-15 17:45:43:          val_accuracy = 0.633523, val_loss = 0.086388
+19-02-15 17:46:27: epoch 4, train_accuracy = 0.718048, train_loss = 0.564458.
+19-02-15 17:46:30:          val_accuracy = 0.633523, val_loss = 0.092560
+19-02-15 17:47:13: epoch 5, train_accuracy = 0.715239, train_loss = 0.564004.
+19-02-15 17:47:16:          val_accuracy = 0.633523, val_loss = 0.091700
+19-02-15 17:47:59: epoch 6, train_accuracy = 0.716994, train_loss = 0.568186.
+19-02-15 17:48:02:          val_accuracy = 0.633523, val_loss = 0.079328
+19-02-15 17:48:45: epoch 7, train_accuracy = 0.748596, train_loss = 0.527017.
+19-02-15 17:48:48:          val_accuracy = 0.633523, val_loss = 0.095021
+19-02-15 17:49:31: epoch 8, train_accuracy = 0.741573, train_loss = 0.542887.
+19-02-15 17:49:34:          val_accuracy = 0.633523, val_loss = 0.085469
+19-02-15 17:50:17: epoch 9, train_accuracy = 0.754213, train_loss = 0.524497.
+19-02-15 17:50:20:          val_accuracy = 0.633523, val_loss = 0.081109
+19-02-15 17:50:23: epoch 9, test_accuracy = 0.633523, test_loss = 0.080711
+19-02-15 17:51:08: epoch 10, train_accuracy = 0.745787, train_loss = 0.523659.
+19-02-15 17:51:11:          val_accuracy = 0.633523, val_loss = 0.083147
+19-02-15 17:51:55: epoch 11, train_accuracy = 0.760183, train_loss = 0.505123.
+19-02-15 17:51:58:          val_accuracy = 0.633523, val_loss = 0.084618
+Done test£°
+Test_accuracy = 0.633523, test_loss = 0.084272

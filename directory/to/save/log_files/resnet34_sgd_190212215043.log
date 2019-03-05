@@ -1,0 +1,13 @@
+2824 training images and 352 test images
+19-02-12 21:52:38: epoch 0, train_accuracy = 0.758076, train_loss = 0.531320.
+19-02-12 21:52:45:          val_accuracy = 0.633523, val_loss = 0.083861
+19-02-12 21:53:29: epoch 1, train_accuracy = 0.738062, train_loss = 0.554387.
+19-02-12 21:53:32:          val_accuracy = 0.633523, val_loss = 0.095978
+19-02-12 21:54:17: epoch 2, train_accuracy = 0.726124, train_loss = 0.562822.
+19-02-12 21:54:21:          val_accuracy = 0.633523, val_loss = 0.079090
+19-02-12 21:55:06: epoch 3, train_accuracy = 0.746840, train_loss = 0.536161.
+19-02-12 21:55:09:          val_accuracy = 0.633523, val_loss = 0.088992
+19-02-12 21:55:54: epoch 4, train_accuracy = 0.747893, train_loss = 0.528427.
+19-02-12 21:55:57:          val_accuracy = 0.633523, val_loss = 0.096278
+Done test£¡
+Test_accuracy = 0.633523, test_loss = 0.096778

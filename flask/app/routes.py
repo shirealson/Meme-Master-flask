@@ -1,4 +1,4 @@
-from flask import render_template
+﻿from flask import render_template
 from app import app
 from app import Cdatabase
 from flask import request
@@ -27,12 +27,12 @@ def getgroup(category,num):
     data['paths']=paths
     return jsonify(data)
 '''
-@app.route('/getgroup/<int:category>')
-def getgroup(category):
+@app.route('/getgroup/<int:category>/<int:num>')
+def getgroup(category,num):
     data={}
-    paths,num,name=Cdatabase.CategoryQuery(category)
+    paths,full_num,name=Cdatabase.CategoryQuery(category,num)
     data['category']=category
-    data['num']=num
+    data['num']=full_num
     data['paths']=paths
     data['category_cn_name']=name
     return jsonify(data)

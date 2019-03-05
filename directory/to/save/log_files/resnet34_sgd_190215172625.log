@@ -1,0 +1,9 @@
+2824 ’≈—µ¡∑ºØÕº∆¨£¨ 352 ’≈≤‚ ‘ºØÕº∆¨
+19-02-15 17:27:22: epoch 0, train_accuracy = 0.719452, train_loss = 0.570994.
+19-02-15 17:27:25:          val_accuracy = 0.633523, val_loss = 0.091241
+19-02-15 17:28:09: epoch 1, train_accuracy = 0.683989, train_loss = 0.602975.
+19-02-15 17:28:12:          val_accuracy = 0.633523, val_loss = 0.091423
+19-02-15 17:28:56: epoch 2, train_accuracy = 0.682584, train_loss = 0.599300.
+19-02-15 17:28:59:          val_accuracy = 0.633523, val_loss = 0.092644
+Done test£°
+Test_accuracy = 0.633523, test_loss = 0.092287
