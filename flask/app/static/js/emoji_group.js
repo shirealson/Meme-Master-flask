@@ -9,6 +9,7 @@ function create_emojiGroup(cate_object){
         total_img_num : cate_object.num,
         last_query_state : 0,
         last_query_result : "empty",
+        search_cate : false,//是否是一个搜索类，影响域名选择
         change_group : function(){
             this.group_loaded_group = 0;
             this.group_loaded_index = 0;

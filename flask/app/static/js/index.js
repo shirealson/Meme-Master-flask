@@ -21,6 +21,7 @@ window.onload=function(){
         if(checkBottom() && loading_lock == 1){
             loading_lock = 0;//锁定事件
             console.log("当前loaded_group" + current_cate.group_loaded_group);
+            url = current_cate.search_cate ? 'search/' :'getgroup/';//选择域名
             GET_Request("getgroup/" + current_cate.group_id + "/" + current_cate.eachUpdateNum * (current_cate.group_loaded_group + 1),
             function(dataJSON){//回调函数
                 imageSet = dataJSON.paths;
@@ -61,6 +62,39 @@ window.onload=function(){
             
 
         })
+    });
+    search_btn = $("#search");
+    search_btn.click(function(){
+        search_content = $("#search_content").val();//获取搜索框内容
+        if (search_content == ""){
+            alert("请输入内容");
+        }
+        else{
+            new_emoji_group = {
+                category : search_content,
+                category_cn_name :search_content,
+                num : 10 //初始数设为10，获取真正数字以后再改
+            };
+            search_category = create_emojiGroup(new_emoji_group);
+            search_category.search_cate = true;
+            current_cate = search_category;
+            clear_screen();//清除原有的元素
+            current_cate.change_group();
+            rest_col = 0;//重置了需要将该值清零
+            loading_lock = 0;//锁定滚动时间
+            console.log("当前loaded_group" + current_cate.group_loaded_group);
+            GET_Request("search/" + current_cate.group_id + "/" + current_cate.eachUpdateNum * (current_cate.group_loaded_group + 1),
+            function(dataJSON){//回调函数
+                current_cate.query_success();//成功了就增长
+                current_cate.total_img_num = dataJSON.num//这个值还不确定叫什么
+                imageSet = dataJSON.paths;
+                updatePage(imageSet);
+                loading_lock = 1;//释放事件锁
+                console.log("加载完以后loaded_group" + current_cate.group_loaded_group);
+            });
+        }
+
+
     });
 
     });//初始化
