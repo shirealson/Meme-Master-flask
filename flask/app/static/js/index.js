@@ -22,7 +22,7 @@ window.onload=function(){
             loading_lock = 0;//锁定事件
             console.log("当前loaded_group" + current_cate.group_loaded_group);
             url = current_cate.search_cate ? 'search/' :'getgroup/';//选择域名
-            GET_Request("getgroup/" + current_cate.group_id + "/" + current_cate.eachUpdateNum * (current_cate.group_loaded_group + 1),
+            GET_Request(url + current_cate.group_id + "/" + current_cate.eachUpdateNum * (current_cate.group_loaded_group + 1),
             function(dataJSON){//回调函数
                 imageSet = dataJSON.paths;
                 updatePage(imageSet);
@@ -50,6 +50,7 @@ window.onload=function(){
             current_cate.change_group();
             rest_col = 0;//重置了需要将该值清零
             loading_lock = 0;//锁定滚动时间
+            $("#generate_board").css("visibility","hidden");
             console.log("当前loaded_group" + current_cate.group_loaded_group);
             GET_Request("getgroup/" + current_cate.group_id + "/" + current_cate.eachUpdateNum * (current_cate.group_loaded_group + 1),
             function(dataJSON){//回调函数
@@ -91,6 +92,7 @@ window.onload=function(){
                 updatePage(imageSet);
                 loading_lock = 1;//释放事件锁
                 console.log("加载完以后loaded_group" + current_cate.group_loaded_group);
+                $("#generate_board").css("visibility","hidden");//设置菜单可见
             });
         }
 
@@ -197,7 +199,7 @@ function insertCard(parent,img_src,title){//parent：父元素对象 img_src : �
     current_cate.group_loaded_index  += 1;//更新当前对象的已加载数量
 }
 
-function initialize(callback){
+function initialize(callback=none){
     //获取nav-link分组信息创建,cates数组
     GET_Request("getrandom",function(dataJSON){
         cate_list = dataJSON

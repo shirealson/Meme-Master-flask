@@ -2,6 +2,7 @@
 from app import app
 from app import Cdatabase
 from flask import request
+from app.search import dbsearch
 from flask import Flask, jsonify
 import random
 @app.route('/')
@@ -50,6 +51,17 @@ def getrandom():
         data['category_cn_name']=name
         datas[str(i)]=data
     return jsonify(datas)
+@app.route('/search/<keyword>/<int:number>')
+def search(keyword,number):
+    data={}
+    data['paths']=dbsearch(keyword)
+    data['search_result_num']=len(data['paths'])
+    if data['search_result_num'] >= number :
+        data['paths']=data['paths'][number-10:number]
+        return jsonify(data)
+    else:
+        data['paths']=data['paths'][(number-10):data['search_result_num']]
+        return jsonify(data)
 
 if __name__ == '__main__':
     app.debug = True

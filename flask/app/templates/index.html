@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
-    <link rel="stylesheet" href="F:/Python src/meme-master/flask/app/static/css/index.css">
+    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" href="F:/Python src/Meme-Master-flask/flask/app/static/css/index.css">
     <title>{{page_title}}</title>
   </head>
   <body>
@@ -85,6 +85,10 @@
       
     
     <a href="#" class="position-fixed btn btn-dark" id="back_to_top">回到顶部</a>
+    <div class="text-center" id="generate_board">
+      <h2>不满意搜索结果？</h2>
+      <button class="btn-primary btn">使用表情合成功能</button>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
