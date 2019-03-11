@@ -8,9 +8,7 @@ import mysql.connector
 
 
 
-#DBSyName=''
-#DBSy = mysql.connector.connect(host="10.128.252.239",user='root', password='', database='meme_master', use_unicode=True)#-------------------------------------
-#cursorDBSy=DBSy.cursor()
+
 
 
 
@@ -19,9 +17,11 @@ import mysql.connector
 
 
 def dbsearch(sentence):
+    DBSyName=''
+    DBSy = mysql.connector.connect(host="localhost",user='root', password='', database='meme_master', use_unicode=True)#-------------------------------------
+    cursorDBSy=DBSy.cursor()
     DBCoreName = 'dataset1'
-    DBCore = mysql.connector.connect(host="localhost", user='root', password='', database='meme_master',
-                                     use_unicode=True)
+    DBCore = mysql.connector.connect(host="localhost", user='root', password='', database='meme_master',use_unicode=True)
     cursorDBCore = DBCore.cursor()
     result = []
     #全字段匹配
@@ -38,14 +38,15 @@ def dbsearch(sentence):
         for datatemp in resultClassMatch:
             result.append(datatemp)
         return result
-    
+        #print(result)
     #分词
     wordJieba = jieba.cut(sentence,cut_all=False)
-#    #加入关键词同义词
-#    for  word  in  wordJieba:
-#        cursorDBSy.execute('SELECT  category  FROM  category   WHERE   label_name="%s" ORDER BY  label_num  desc  LIMIT 0,1;'%word)#---------------------------------------------------
-#        wordSy = cursorDBSy.fetchall()
-
+    print(wordJieba)
+    #加入关键词同义词
+    for  word  in  wordJieba:
+        cursorDBSy.execute('SELECT  sy  FROM  synonyms   WHERE   word="%s" ;'%word)#---------------------------------------------------
+        wordSy = cursorDBSy.fetchall()
+    #print (wordSy)
 
     #关键词转换为拼音-----------------------------------
 
@@ -63,21 +64,21 @@ def dbsearch(sentence):
                 #print(datatemp)
                 sortArray.append(datatemp)
     sortResult=Counter(sortArray).most_common(5)
+    
     for data in sortResult:
         result.append(data[0])
-#    for  word  in  wordSy:
-#       cursorDBSy.execute('SELECT  category  FROM  category   WHERE   label_name="%s" ORDER BY  label_num  ;'%word)#-------------------------------------------------------
-#        resultSy = cursorDBSy.fetchall()
-#        if  len(resultSy):
-#            for datatemp in resultSy:
-#                result.append(datatemp)
+    #print(result)    
+    for  word  in  wordSy:
+        cursorDBCore.execute('SELECT  path  FROM  jiebaresult   WHERE   result="%s" ;'%word)#-------------------------------------------------------
+        resultSy = cursorDBCore.fetchall()
+        if  len(resultSy):
+            for datatemp in resultSy:
+                result.append(datatemp)
 
     cursorDBCore.close()
     DBCore.close()
+    cursorDBSy.close()
+    DBSy.close()
     return result
 
 
-
-
-#cursorDBSy.close()
-#DBSy.close()

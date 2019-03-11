@@ -37,22 +37,14 @@
     color:#c0c0c0;
 }
 
+
 #generate_board{
-    width: 100%;
-    background:rgba(44,50,57,0.8);
-    bottom: 0rem;
-    padding: 0.5rem;
-    position: fixed;
+    color:white;
+    height: 0;
     visibility: hidden;
 }
-#generate_board h2{
-    color: white;
-}
-
 #generate_board button{
-    margin-top: 0.5rem;
-    height: 5rem;
-    width: 20rem;
-    font-size:1.5rem;
-    border-radius: 4rem;
+    position:absolute;
+    right: 1rem;
+    bottom: 1rem;
 }

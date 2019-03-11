@@ -15,6 +15,7 @@ window.onload=function(){
     card_num = 0;
     loading_lock = 1;
     nav_top = $(".navbar").offset().top;//初始化导航栏的顶
+    close_generate_board();//先关闭生成板
     initialize(function(){//此处开始为回调函数
     //绑定事件
     window.onscroll=function(){
@@ -50,7 +51,7 @@ window.onload=function(){
             current_cate.change_group();
             rest_col = 0;//重置了需要将该值清零
             loading_lock = 0;//锁定滚动时间
-            $("#generate_board").css("visibility","hidden");
+            close_generate_board();
             console.log("当前loaded_group" + current_cate.group_loaded_group);
             GET_Request("getgroup/" + current_cate.group_id + "/" + current_cate.eachUpdateNum * (current_cate.group_loaded_group + 1),
             function(dataJSON){//回调函数
@@ -87,12 +88,12 @@ window.onload=function(){
             GET_Request("search/" + current_cate.group_id + "/" + current_cate.eachUpdateNum * (current_cate.group_loaded_group + 1),
             function(dataJSON){//回调函数
                 current_cate.query_success();//成功了就增长
-                current_cate.total_img_num = dataJSON.num//这个值还不确定叫什么
+                current_cate.total_img_num = dataJSON.search_result_num;//这个值还不确定叫什么
                 imageSet = dataJSON.paths;
                 updatePage(imageSet);
                 loading_lock = 1;//释放事件锁
                 console.log("加载完以后loaded_group" + current_cate.group_loaded_group);
-                $("#generate_board").css("visibility","hidden");//设置菜单可见
+                open_generate_board();//设置菜单可见
             });
         }
 
@@ -299,4 +300,12 @@ function nav_link_init(cates){
         console.log("创建nav标签")
     }
  
+}
+function close_generate_board(){
+    $("#generate_board").css("visibility","hidden");
+    $("#generate_board").css("height","0");
+}
+function open_generate_board(){
+    $("#generate_board").css("visibility","visible");
+    $("#generate_board").css("height","12rem");
 }
