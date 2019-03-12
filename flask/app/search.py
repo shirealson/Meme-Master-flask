@@ -10,6 +10,9 @@ import mysql.connector
 
 def dbsearch(sentence):
     #数据库初始化
+    DBEmojiName = ''
+    DBEmoji = mysql.connector.connect(host="localhost", user='root', password='', database='sougou',use_unicode=True)
+    cursorDBEmoji = DBEmoji.cursor()
     DBCoreName = 'dataset1'
     DBCore = mysql.connector.connect(host="localhost", user='root', password='', database='meme_master',use_unicode=True)
     cursorDBCore = DBCore.cursor()
@@ -25,12 +28,22 @@ def dbsearch(sentence):
             result.append(datatemp)
 
     #类匹配
+    classResult=[]
+    resultClassMatch=[]
     cursorDBCore.execute('SELECT  path  FROM  image   WHERE   template_name LIKE "%%%s%%" ; '%sentence )
     resultClassMatch = cursorDBCore.fetchall()
     if len(resultClassMatch):
         for datatemp in resultClassMatch:
-            result.append(datatemp)
-        return result
+            classResult.append(datatemp)
+            
+    resultClassMatch=[]
+    
+    cursorDBEmoji.execute('SELECT  image_name  FROM  emoji   WHERE   template_name LIKE "%%%s%%" ; '%sentence )
+    resultClassMatch = cursorDBEmoji.fetchall()
+    if len(resultClassMatch):
+        for datatemp in resultClassMatch:
+            classResult.append(datatemp)
+    
     
     #分词
     wordJieba = jieba.cut(sentence,cut_all=False)
@@ -61,7 +74,7 @@ def dbsearch(sentence):
                 sortTemp.append(datatemp)
             resultJieba=[]
 
-    sortResult=Counter(sortTemp).most_common(6)
+    sortResult=Counter(sortTemp).most_common(100)
     for data in sortResult:
         result.append(data[0])
 
@@ -75,14 +88,18 @@ def dbsearch(sentence):
                 sortTemp.append(datatemp)
             resultSy=[]
             
-    sortResult=Counter(sortTemp).most_common(4)
+    sortResult=Counter(sortTemp).most_common(100)
     for data in sortResult:
         result.append(data[0])
 
+
+    for datatemp in classResult:
+        result.append(datatemp)
+
+    cursorDBEmoji.close()
+    DBEmoji.close()
     cursorDBCore.close()
     DBCore.close()
     
     return result
-
-
 
